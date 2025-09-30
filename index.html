@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestione Veicolo — Scadenze & Tariffe</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Gestione Veicolo — Scadenze & Tariffe</h1>
+    <p class="subtitle">Veicolo + Regione (tariffa auto), scadenze (bollo, revisione, assicurazione, tagliando 15.000 km / 12 mesi), semaforo stato e temi.</p>
+  </header>
+
+  <!-- BARRA STATO GLOBALE -->
+  <div id="globalStatus" class="status-bar status-green" aria-live="polite">
+    <span class="dot dot-green"></span>
+    <strong id="globalStatusText">Tutto OK</strong>
+  </div>
+
+  <main class="container">
+    <!-- SEZIONE: TEMA -->
+    <section class="card">
+      <h2>Impostazioni & Tema</h2>
+      <div class="theme-row">
+        <span>Colore sfondo:</span>
+        <div class="theme-buttons">
+          <button type="button" class="btn theme" data-theme="pink">Rosa</button>
+          <button type="button" class="btn theme" data-theme="green">Verde</button>
+          <button type="button" class="btn theme" data-theme="blue">Blu</button>
+          <button type="button" class="btn theme" data-theme="white">Bianco</button>
+        </div>
+      </div>
+      <details class="advanced">
+        <summary>Avanzate (soglie avvisi)</summary>
+        <div class="grid">
+          <div class="field">
+            <label for="thresholdDays">Giorni soglia (giallo)</label>
+            <input id="thresholdDays" type="number" min="1" value="30" />
+          </div>
+          <div class="field">
+            <label for="thresholdKm">Km soglia (giallo)</label>
+            <input id="thresholdKm" type="number" min="100" step="100" value="1000" />
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- SEZIONE: VEICOLO & REGIONE -->
+    <section class="card">
+      <h2>Dati Veicolo & Regione</h2>
+      <form id="vehicleForm" novalidate>
+        <div class="grid">
+          <div class="field">
+            <label for="vehicleInput">Veicolo <span class="req">*</span></label>
+            <input id="vehicleInput" name="vehicle" list="vehiclesList" placeholder="Es. Golf 7.5, Fiat Panda…" autocomplete="off" required />
+            <datalist id="vehiclesList"></datalist>
+          </div>
+
+          <div class="field">
+            <label for="regionSelect">Regione <span class="req">*</span></label>
+            <select id="regionSelect" name="region" required>
+              <option value="">— Seleziona la regione —</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tariffInput">Tariffa (auto)</label>
+            <input id="tariffInput" name="tariff" type="text" readonly aria-readonly="true" />
+          </div>
+        </div>
+
+        <div id="vehicleErrors" class="errors" role="alert" aria-live="assertive"></div>
+      </form>
+    </section>
+
+    <!-- SEZIONE: MANUTENZIONI & SCADENZE -->
+    <section class="card">
+      <h2>Scadenze & Tagliando</h2>
+      <form id="maintenanceForm" novalidate>
+        <div class="grid">
+          <div class="field">
+            <label for="currentKm">Chilometraggio attuale (km) <span class="req">*</span></label>
+            <input id="currentKm" type="number" min="0" placeholder="Es. 87500" required />
+          </div>
+
+          <div class="field">
+            <label for="lastServiceDate">Ultimo tagliando — Data <span class="req">*</span></label>
+            <input id="lastServiceDate" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="lastServiceKm">Ultimo tagliando — Km <span class="req">*</span></label>
+            <input id="lastServiceKm" type="number" min="0" placeholder="Es. 75000" required />
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="expiryBollo">Scadenza Bollo <span class="req">*</span></label>
+            <input id="expiryBollo" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="expiryRevisione">Scadenza Revisione <span class="req">*</span></label>
+            <input id="expiryRevisione" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="expiryAssicurazione">Scadenza Assicurazione <span class="req">*</span></label>
+            <input id="expiryAssicurazione" type="date" required />
+          </div>
+        </div>
+
+        <div id="maintErrors" class="errors" role="alert" aria-live="assertive"></div>
+      </form>
+
+      <!-- RIEPILOGO INDICATORI -->
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Voce</th>
+              <th>Dettaglio</th>
+              <th>Residuo</th>
+              <th>Stato</th>
+            </tr>
+          </thead>
+          <tbody id="statusBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript">Questa app richiede JavaScript attivo.</div></noscript>
+  <script defer src="assets/app.js"></script>
+</body>
+</html>
