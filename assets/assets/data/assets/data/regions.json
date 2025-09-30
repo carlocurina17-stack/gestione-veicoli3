@@ -1,0 +1,22 @@
+[
+  { "regione": "Abruzzo",               "tariffa": 100 },
+  { "regione": "Basilicata",            "tariffa": 95 },
+  { "regione": "Calabria",              "tariffa": 90 },
+  { "regione": "Campania",              "tariffa": 110 },
+  { "regione": "Emilia-Romagna",        "tariffa": 130 },
+  { "regione": "Friuli-Venezia Giulia", "tariffa": 120 },
+  { "regione": "Lazio",                 "tariffa": 140 },
+  { "regione": "Liguria",               "tariffa": 125 },
+  { "regione": "Lombardia",             "tariffa": 150 },
+  { "regione": "Marche",                "tariffa": 115 },
+  { "regione": "Molise",                "tariffa": 85 },
+  { "regione": "Piemonte",              "tariffa": 135 },
+  { "regione": "Puglia",                "tariffa": 105 },
+  { "regione": "Sardegna",              "tariffa": 100 },
+  { "regione": "Sicilia",               "tariffa": 100 },
+  { "regione": "Toscana",               "tariffa": 145 },
+  { "regione": "Trentino-Alto Adige",   "tariffa": 130 },
+  { "regione": "Umbria",                "tariffa": 110 },
+  { "regione": "Valle d'Aosta",         "tariffa": 125 },
+  { "regione": "Veneto",                "tariffa": 140 }
+]
